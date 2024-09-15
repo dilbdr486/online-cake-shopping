@@ -47,7 +47,7 @@ const Login = ({setShowLogin}) => {
         <div className="login-input">
             {currState==="Login"?<></>:<input name='name' onChange={onChangeHandler} value={data.name} type="text" placeholder='Your name' required />}
             <input name='email' onChange={onChangeHandler} value={data.email} type="text" placeholder='Your email' required />
-            <input name='password' onChange={onChangeHandler} value={data.password} type="text" placeholder='Password' required/>
+            <input name='password' onChange={onChangeHandler} value={data.password} type="password" placeholder='Password' required/>
         </div>
         <button type='submit'>{currState==="Sign Up"?"Create Account":"Login"} </button>
         <div className="login-condition">

@@ -10,14 +10,17 @@ import axios from "axios";
 const Navbar = ({ setShowLogin }) => {
 
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]); 
+  //const [searchResults, setSearchResults] = useState([]); 
   const [menu, setmenu] = useState("Home");
-  const { getTotalCartAmount, getTotalCartCount, token, setToken, setFoodList } = useContext(StoreContext);
+  const { getTotalCartCount, token, setToken, setFoodList } = useContext(StoreContext);
   const navigate = useNavigate();
   const logout = () => {
-    localStorage.removeItem("token");
-    setToken("");
-    navigate("/");
+    const confirmLogout = window.confirm("Are you sure you want to log out?");
+    if (confirmLogout) {
+      localStorage.removeItem("token");
+      setToken("");
+      navigate("/");
+    }
   };
   const totalCartItems = getTotalCartCount();
 

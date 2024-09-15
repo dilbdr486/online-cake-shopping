@@ -21,17 +21,20 @@ const List = ({ url }) => {
   };
 
   const removeFood = async (foodId) => {
-    try {
-      const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
-      if (response.data.success) {
-        toast.success(response.data.message);
-        await fetchList(); // Refresh the list after removal
-      } else {
+    const confirmRemove = window.confirm("Are you sure you want to remove this food item?");
+    if (confirmRemove) {
+      try {
+        const response = await axios.post(`${url}/api/food/remove`, { id: foodId });
+        if (response.data.success) {
+          toast.success(response.data.message);
+          await fetchList(); // Refresh the list after removal
+        } else {
+          toast.error('Error removing food item.');
+        }
+      } catch (error) {
+        console.error('Error removing food item:', error);
         toast.error('Error removing food item.');
       }
-    } catch (error) {
-      console.error('Error removing food item:', error);
-      toast.error('Error removing food item.');
     }
   };
 
